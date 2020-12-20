@@ -1,6 +1,6 @@
 using System;
 
-namespace ValidationFramework.Models
+namespace WebApp.Models
 {
     public class ErrorViewModel
     {

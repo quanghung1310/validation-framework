@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using ValidationFramework.Models;
+using WebApp.Models;
 
-namespace ValidationFramework.Controllers
+namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
