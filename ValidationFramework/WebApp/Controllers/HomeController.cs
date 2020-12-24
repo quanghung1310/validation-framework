@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ValidationFramework;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -18,9 +19,10 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+            return ValidationFramework.Validator.HelloWorld();
+            //return View();
         }
 
         public IActionResult Privacy()
