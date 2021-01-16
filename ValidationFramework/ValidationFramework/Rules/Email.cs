@@ -23,7 +23,7 @@ namespace ValidationFramework
                 return true;
             }
 
-            string valueAsString = value as string;
+            string valueAsString = this.value as string;
 
             // Use RegEx implementation if it has been created, otherwise use a non RegEx version.
             if (_regex != null)
@@ -74,9 +74,9 @@ namespace ValidationFramework
             return new Regex(pattern, options);
         }
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException();
+            return "must be a valid email address.";
         }
     }
 }

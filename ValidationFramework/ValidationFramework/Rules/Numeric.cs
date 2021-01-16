@@ -14,9 +14,9 @@ namespace ValidationFramework
             this.value = value;
         }
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException("Value was not numeric");
+            return "must be a number.";
         }
 
         public bool IsValid()

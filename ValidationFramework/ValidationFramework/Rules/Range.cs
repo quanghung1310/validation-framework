@@ -78,9 +78,9 @@ namespace ValidationFramework
             return min.CompareTo(convertedValue) <= 0 && max.CompareTo(convertedValue) >= 0;
         }
 
-        void DataType.ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException("Value was ");
+            return $"must be between {this.Minimum} and {this.Maximum}.";
         }
 
         private void Initialize(IComparable minimum, IComparable maximum, Func<object, object> conversion)

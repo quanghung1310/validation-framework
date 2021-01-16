@@ -22,9 +22,9 @@ namespace ValidationFramework
             this.Length = length;
         }
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException($"Min length {this.Length}");
+            return $"must be at least {this.Length}.";
         }
 
         public bool IsValid()
