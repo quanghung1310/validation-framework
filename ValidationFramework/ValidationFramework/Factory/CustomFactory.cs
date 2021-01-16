@@ -6,7 +6,10 @@ namespace ValidationFramework.Factory
 {
     class CustomFactory
     {
+        public string ValidatorObject(string rule, object value, string customMessage)
+        {
+            return "message";
+        }
 
-      
     }
 }

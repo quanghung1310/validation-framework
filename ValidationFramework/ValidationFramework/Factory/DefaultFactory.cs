@@ -8,37 +8,61 @@ namespace ValidationFramework.Factory
     {
         public string ValidatorObject(string rule, object value, string customMessage)
         {
-
-            switch (rule.ToLower())
+            try
             {
-                case Rules.Mail:
-                     var email = new Email(value);
-                    if (!email.IsValid())
-                    {
-                        return "sss"; //ruleObject.ErrorMessage();
-                    }
-                    break;
-                case Rules.MaxLength:
-                    var maxLength = new MaxLength(value);
-                    if (!maxLength.IsValid())
-                    {
-                        return "sss"; //ruleObject.ErrorMessage();
-                    }
-                    break;
-                case Rules.MinLength:
-                    var ruleObject = new MinLength(value);
-                    if (!ruleObject.IsValid())
-                    {
-                        return "sss"; //ruleObject.ErrorMessage();
-                    }
-                    break;
+                var paramsRule = rule.Split(':');
+                DataType dataType;
+                switch (paramsRule[0].ToLower())
+                {
+                    case Rules.Mail:
+                        dataType = new Email(value);
+                        break;
+                    case Rules.MaxLength:
+                        dataType = new MaxLength(value);
+                        break;
+                    case Rules.MinLength:
+                        dataType = new MinLength(value);
+                        break;
+                    case Rules.Numeric:
+                        dataType = new Numeric(value);
+                        break;
+                    case Rules.Phone:
+                        dataType = new Phone(value);
+                        break;
+                    case Rules.Required:
+                        dataType = new Required(value);
+                        break;
+                    case Rules.Range:
+                        var between = paramsRule[1].Split(',');
+                        dataType = new Range(value, Convert.ToDouble(between[0]), Convert.ToDouble(between[1]));
+                        break;
+                    case Rules.RegularExpression:
+                        dataType = new RegularExpression(value, paramsRule[1]);
+                        break;
+                    case Rules.Url:
+                        dataType = new Url(value);
+                        break;
 
-                default:
-                    break;
+                    default:
+                        return null;
 
+                }
+                if (dataType != null)
+                {
+                    if (!dataType.IsValid())
+                    {
+                        return customMessage != null ? customMessage : dataType.ErrorMessage();                     
+                    }
+                }
+                return null;
             }
-
-            return null;
+            catch (Exception ex)
+            {
+                return ex.Message;
+                throw;
+            }
+         
         }
+       
     }
 }
