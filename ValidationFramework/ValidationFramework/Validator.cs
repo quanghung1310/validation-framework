@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ValidationFramework
 {
-    public static class Validator
+    public  class Validation
     {
-        public static string HelloWorld()
-        {
-            return "Hello World";
-        }
+       public void Validator(object Request,Dictionary<string,string> Rules)
+       {
+
+       }
     }
 }
