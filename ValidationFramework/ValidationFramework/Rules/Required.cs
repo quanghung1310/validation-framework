@@ -26,7 +26,6 @@ namespace ValidationFramework
                 return false;
             }
 
-            // only check string length if empty strings are not allowed
             var stringValue = value as string;
             if (stringValue != null && !AllowEmptyStrings)
             {

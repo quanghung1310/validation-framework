@@ -43,7 +43,6 @@ namespace ValidationFramework
         {
             this.SetupConversion();
 
-            // Automatically pass if value is null or empty. RequiredAttribute should be used to assert a value is not empty.
             if (value == null)
             {
                 return true;
@@ -107,9 +106,6 @@ namespace ValidationFramework
                     throw new InvalidOperationException("Must set min and max");
                 }
 
-                // Careful here -- OperandType could be int or double if they used the long form of the ctor.
-                // But the min and max would still be strings.  Do use the type of the min/max operands to condition
-                // the following code.
                 Type operandType = minimum.GetType();
 
                 if (operandType == typeof(int))

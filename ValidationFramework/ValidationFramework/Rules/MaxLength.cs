@@ -29,7 +29,7 @@ namespace ValidationFramework
             EnsureLegalLengths();
 
             var length = 0;
-            // Automatically pass if value is null. RequiredAttribute should be used to assert a value is not null.
+
             if (this.value == null)
             {
                 return true;
@@ -43,7 +43,6 @@ namespace ValidationFramework
                 }
                 else
                 {
-                    // We expect a cast exception if a non-{string|array} property was passed in.
                     length = ((Array)this.value).Length;
                 }
             }
