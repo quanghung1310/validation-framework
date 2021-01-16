@@ -34,9 +34,9 @@ namespace ValidationFramework
             this.Pattern = pattern;
         }
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException(this.Pattern);
+            return "format is invalid.";
         }
 
         public bool IsValid()

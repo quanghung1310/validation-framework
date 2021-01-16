@@ -51,9 +51,9 @@ namespace ValidationFramework
             return MaxAllowableLength == Length || length <= Length;
         }
 
-        void DataType.ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException($"Max length {this.Length}");
+            return $"may not be greater than {this.Length}.";
         }
 
         private void EnsureLegalLengths()
