@@ -17,9 +17,9 @@ namespace ValidationFramework
         }
 
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException("Value was not phone");
+            return "must be a phone format.";
         }
 
         public bool IsValid()

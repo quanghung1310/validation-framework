@@ -14,9 +14,9 @@ namespace ValidationFramework
 
         public bool AllowEmptyStrings { get; set; }
 
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException();
+            return "field is required";
         }
 
         public bool IsValid()
