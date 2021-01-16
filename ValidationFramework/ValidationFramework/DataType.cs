@@ -7,6 +7,6 @@ namespace ValidationFramework
     interface DataType
     {
         bool IsValid();
-        void ErrorMessage();
+        string ErrorMessage();
     }
 }

@@ -14,9 +14,9 @@ namespace ValidationFramework
         {
             this.value = value;
         }
-        public void ErrorMessage()
+        public string ErrorMessage()
         {
-            throw new NotImplementedException("Value is not url");
+            return "format is invalid";
         }
 
         public bool IsValid()
