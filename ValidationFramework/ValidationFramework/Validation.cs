@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using ValidationFramework.Factory;
 
 namespace ValidationFramework
 {
     public  class Validation
     {
-      
+        public static AbstractFactoryValidation abstractFactoryValidation = new AbstractFactoryValidation();
        public void Validator(object Request,Dictionary<string,string> Rules, Dictionary<string, string> Optional =null)
        {
             Dictionary<string, object> ParaValidation = new Dictionary<string, object>();
@@ -16,6 +17,7 @@ namespace ValidationFramework
                 String fieldValue = (String)(pi.GetValue(Request, null));
                 ParaValidation.Add( entry.Value, fieldValue);
             }
+
             
 
 

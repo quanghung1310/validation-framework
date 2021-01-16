@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ValidationFramework
+namespace ValidationFramework.Factory
 {
     public class AbstractFactoryValidation
     {

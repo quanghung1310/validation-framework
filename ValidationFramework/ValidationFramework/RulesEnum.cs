@@ -7,6 +7,22 @@ namespace ValidationFramework
 {
     public static class Rules
     {
+        private static List<string> ListRule = new List<string>(
+
+            new string[]
+            {
+                    "email",
+                    "maxlength",
+                    "minlength",
+                    "numeric",
+                    "phone",
+                    "range",
+                    "url",
+                    "regularexpression",
+                    "required"
+            }
+
+        );
         public const string
             Mail = "email",
             MaxLength = "maxlength",
@@ -17,10 +33,9 @@ namespace ValidationFramework
             Url = "url",
             RegularExpression = "regularexpression",
             Required = "required";
-        public bool Exist()
+        public static bool Exist(string value)
         {
-            Enum.GetValues(typeof(Rules)).Cast<Rules>();
-            
+            return Rules.ListRule.Contains(value);          
         }
     }
 
