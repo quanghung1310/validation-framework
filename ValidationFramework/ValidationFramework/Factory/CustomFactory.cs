@@ -8,13 +8,31 @@ namespace ValidationFramework.Factory
     {
         public override string ValidatorObject(string rule, object value, string customMessage)
         {
-            return "message";
-        }
-        public  string ValidatorObjectCustomer(string rule, object value, string customMessage)
-        {
-            return "message";
-        }
+            try
+            {
+                var paramsRule = rule.Split(':');
+                DataType dataType;
+                Type t = Type.GetType("ValidationFramework1.DefaultRules."+ rule );
 
+                dataType = (DataType)Activator.CreateInstance(t);
+                dataType.value = value;
+               
+             
+                if (dataType != null)
+                {
+                    if (!dataType.IsValid())
+                    {
+                        return customMessage != null ? customMessage : dataType.ErrorMessage();
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+                throw;
+            }
+        }
 
     }
 }

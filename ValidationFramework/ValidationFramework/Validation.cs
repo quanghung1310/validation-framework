@@ -35,11 +35,11 @@ namespace ValidationFramework
                     }
                     else
                     {
-                        //abstractFactoryValidation = new CustomFactory();
-                        Type t = Type.GetType("CustomFactory");
-                        abstractFactoryValidation = Activator.CreateInstance(t);
-                        var errorMessage1 = x.ValidatorObject(item, fieldValue,
-                      CustomMessages != null && CustomMessages.ContainsKey(entry.Key) ? CustomMessages[entry.Key] : null);
+                        abstractFactoryValidation = new CustomFactory();
+                      //  Type t = Type.GetType("CustomFactory");
+                      //  abstractFactoryValidation = Activator.CreateInstance(t);
+                      //  var errorMessage1 = x.ValidatorObject(item, fieldValue,
+                      //CustomMessages != null && CustomMessages.ContainsKey(entry.Key) ? CustomMessages[entry.Key] : null);
 
 
                     }

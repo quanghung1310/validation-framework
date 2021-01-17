@@ -5,27 +5,31 @@ using System.Text;
 
 namespace ValidationFramework
 {
-    class MaxLength : DataType
+    class MinLength : DataType
     {
-        private object value;
-        private const int MaxAllowableLength = -1;
+        public object value { get; set; }
 
         public int Length { get; private set; }
 
-        public MaxLength(object value, int length)
+        public MinLength(object value)
         {
-            this.Length = length;
             this.value = value;
         }
 
-        public MaxLength(object value)
+        public MinLength(object value, int length)
         {
-            this.Length = MaxAllowableLength;
             this.value = value;
+            this.Length = length;
+        }
+
+        public string ErrorMessage()
+        {
+            return $"must be at least {this.Length}.";
         }
 
         public bool IsValid()
         {
+            // Check the lengths for legality
             EnsureLegalLengths();
 
             var length = 0;
@@ -48,19 +52,14 @@ namespace ValidationFramework
                 }
             }
 
-            return MaxAllowableLength == Length || length <= Length;
-        }
-
-        public string ErrorMessage()
-        {
-            return $"may not be greater than {this.Length}.";
+            return length >= Length;
         }
 
         private void EnsureLegalLengths()
         {
-            if (Length == 0 || Length < -1)
+            if (Length < 0)
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "Invalid maxlength"));
+                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "Invalid minlength"));
             }
         }
     }

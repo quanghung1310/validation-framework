@@ -26,7 +26,7 @@ namespace WebApp.Controllers
                 var Rules = new Dictionary<string, string>()
                 {
                     {"Email","Email|Required|Range:3,7"},
-                    {"Password", "Password"}
+                    {"Password", "CustomRule"}
 
                 };
                 var dic = validation.Validator(form, Rules);

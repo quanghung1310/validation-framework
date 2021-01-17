@@ -8,7 +8,7 @@ namespace ValidationFramework
 {
     class RegularExpression : DataType
     {
-        private object value;
+        public object value { get; set; }
         private int _matchTimeoutInMilliseconds;
         private bool _matchTimeoutSet;
 

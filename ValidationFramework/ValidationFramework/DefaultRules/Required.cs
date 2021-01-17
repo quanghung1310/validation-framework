@@ -6,7 +6,7 @@ namespace ValidationFramework
 {
     class Required : DataType
     {
-        private object value;
+        public object value { get; set; }
         public Required(object value)
         {
             this.value = value;

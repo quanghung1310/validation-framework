@@ -8,7 +8,7 @@ namespace ValidationFramework
 {
     class Email : DataType
     {
-        private object value;
+        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
 
         public Email(object value)
