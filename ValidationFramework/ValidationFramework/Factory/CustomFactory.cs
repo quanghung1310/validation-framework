@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -13,8 +14,9 @@ namespace ValidationFramework.Factory
             {
                 var paramsRule = rule.Split(':');
                 DataType dataType;
-                Type type = Type.GetType("WebApp." + rule + ", WebApp");
-
+                var projectName = Assembly.GetEntryAssembly().GetName().Name;
+                var str = $"{projectName}.CustomRule." + rule + $", {projectName}";
+                Type type = Type.GetType(str);
                 dataType = (DataType)Activator.CreateInstance(type);
                
              

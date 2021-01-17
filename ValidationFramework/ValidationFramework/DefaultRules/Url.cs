@@ -29,6 +29,7 @@ namespace ValidationFramework
 
             if (_regex != null)
             {
+                var test = _regex.Match(valueAsString).Length;
                 return valueAsString != null && _regex.Match(valueAsString).Length > 0;
             }
             else

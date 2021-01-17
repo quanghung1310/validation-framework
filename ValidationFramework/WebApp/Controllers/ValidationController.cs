@@ -23,13 +23,32 @@ namespace WebApp.Controllers
             try
             {
 
-                var Rules = new Dictionary<string, string>()
+                var rules = new Dictionary<string, string>()
                 {
-                    {"Email","Email|Required|Range:3,7"},
-                    {"Password", "CustomRule"}
+                    {"Email","Url"},
+                    {"Custom", "EmptyString" },
+                    {"Phone","Phone" },
+                    {"FullName","Required" },
+                    {"Regex",@"regularexpression:^[0-9\-\+]{9,15}$" }
+
+
+                  
 
                 };
-                var dic = validation.Validator(form, Rules);
+                var customMessage =  new Dictionary<string, string>()
+                {
+                    {"Email","Không phải url"},
+                    {"Custom", "Không được để trống trường này" },
+                    {"Phone","Phải là số điện thoại" },
+                    {"FullName","Phải có trường này" },
+                    {"Regex",@"Custome regex" }
+
+
+
+
+                };
+                var dic = validation.Validator(form, rules, customMessage);
+                ViewBag.DicError = dic;
 
 
             }               
@@ -39,7 +58,7 @@ namespace WebApp.Controllers
 
                 throw ex;
             }
-            return View();
+            return View(form);
 
         }
     }
