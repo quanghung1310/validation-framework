@@ -27,8 +27,7 @@ namespace WebApp.Controllers
         {
             string message = string.Empty;
             try
-            {
-               
+            {            
                 var rules = new Dictionary<string, string>
                 {
                     {"Email","Url"},
@@ -36,10 +35,6 @@ namespace WebApp.Controllers
                     {"Phone","Phone" },
                     {"FullName","EmptyString"},
                     {"Regex",@"regularexpression:^[0-9\-\+]{9,15}$" }
-
-
-                  
-
                 };
                 var customMessage =  new Dictionary<string, string>()
                 {
@@ -48,23 +43,15 @@ namespace WebApp.Controllers
                     {"Phone","Phải là số điện thoại" },
                     {"FullName","Phải có trường này" },
                     {"Regex",@"Custome regex" }
-
-
-
-
                 };
-                var dicFun = new Dictionary<string, Func<string,string>>();
-                dicFun.Add("Email",Check);
-                
-                var dic = validation.Validator(form, rules, customMessage,dicFun);
+                var dicFun = new List<ListValidFunc>();
+                dicFun.Add(new ListValidFunc() { FeildName="Email",Func=Check});
+                dicFun.Add(new ListValidFunc() { FeildName = "Custom", Func = Check });
+                var dic = validation.Validator(form, rules, customMessage, dicFun);
                 ViewBag.DicError = dic;
-
-
             }               
-            
             catch (Exception ex)
             {
-
                 throw ex;
             }
             return View(form);
