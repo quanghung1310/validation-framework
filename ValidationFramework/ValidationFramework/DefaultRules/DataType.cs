@@ -6,8 +6,7 @@ namespace ValidationFramework
 {
     public interface DataType
     {
-        object value { get; set; } 
-        bool IsValid();
+        bool IsValid(object value);
         string ErrorMessage();
     }
 }

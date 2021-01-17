@@ -7,13 +7,12 @@ namespace ValidationFramework
 {
     class Phone : DataType
     {
-        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
         private const string _additionalPhoneNumberCharacters = "-.()";
 
-        public Phone(object value)
+        public Phone()
         {
-            this.value = value;
+            //
         }
 
 
@@ -22,7 +21,7 @@ namespace ValidationFramework
             return "must be a phone format.";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             if (value == null)
             {
@@ -31,7 +30,6 @@ namespace ValidationFramework
 
             string valueAsString = value as string;
 
-            // Use RegEx implementation if it has been created, otherwise use a non RegEx version.
             if (_regex != null)
             {
                 return valueAsString != null && _regex.Match(valueAsString).Length > 0;
@@ -79,8 +77,6 @@ namespace ValidationFramework
             const string pattern = @"^(\+\s?)?((?<!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$";
             const RegexOptions options = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture;
 
-            // Set explicit regex match timeout, sufficient enough for phone parsing
-            // Unless the global REGEX_DEFAULT_MATCH_TIMEOUT is already set
             TimeSpan matchTimeout = TimeSpan.FromSeconds(2);
 
             try
@@ -95,7 +91,6 @@ namespace ValidationFramework
                 // Fallback on error
             }
 
-            // Legacy fallback (without explicit match timeout)
             return new Regex(pattern, options);
         }
 

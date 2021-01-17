@@ -7,19 +7,18 @@ namespace ValidationFramework
 {
     class Url : DataType
     {
-        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
 
-        public Url(object value)
+        public Url()
         {
-            this.value = value;
+            //
         }
         public string ErrorMessage()
         {
             return "format is invalid";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             if (value == null)
             {

@@ -8,42 +8,36 @@ namespace ValidationFramework
 {
     class Range : DataType
     {
-        public object value { get; set; }
-
         public object Minimum { get; private set; }
         public object Maximum { get; private set; }
         public Type OperandType { get; private set; }
         private Func<object, object> Conversion { get; set; }
 
-        public Range(object value, int minimum, int maximum)
+        public Range(int minimum, int maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = typeof(int);
         }
 
-        public Range(object value, double minimum, double maximum)
+        public Range(double minimum, double maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = typeof(double);
         }
 
-        public Range(object value, Type type, string minimum, string maximum)
+        public Range(Type type, string minimum, string maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = type;
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             this.SetupConversion();
 
-            // Automatically pass if value is null or empty. RequiredAttribute should be used to assert a value is not empty.
             if (value == null)
             {
                 return true;
@@ -107,9 +101,6 @@ namespace ValidationFramework
                     throw new InvalidOperationException("Must set min and max");
                 }
 
-                // Careful here -- OperandType could be int or double if they used the long form of the ctor.
-                // But the min and max would still be strings.  Do use the type of the min/max operands to condition
-                // the following code.
                 Type operandType = minimum.GetType();
 
                 if (operandType == typeof(int))

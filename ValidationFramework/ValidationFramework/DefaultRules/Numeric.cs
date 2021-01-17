@@ -7,11 +7,9 @@ namespace ValidationFramework
 {
     class Numeric : DataType
     {
-        public object value { get; set; }
-
-        public Numeric(object value)
+        public Numeric()
         {
-            this.value = value;
+            //
         }
 
         public string ErrorMessage()
@@ -19,15 +17,15 @@ namespace ValidationFramework
             return "must be a number.";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
-            if (this.value == null)
+            if (value == null)
             {
                 return true;
             }
             else
             {
-                var numeric = this.value as string;
+                var numeric = value as string;
                 return numeric.All(char.IsNumber);
             }
         }
