@@ -8,9 +8,9 @@ namespace ValidationFramework
 {
     class Range : DataType
     {
-        public object Minimum { get; private set; }
-        public object Maximum { get; private set; }
-        public Type OperandType { get; private set; }
+        object Minimum;
+        object Maximum;
+        Type OperandType;
         private Func<object, object> Conversion { get; set; }
 
         public Range(int minimum, int maximum)

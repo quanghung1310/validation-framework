@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ValidationFramework.Factory
 {
-    public  class CustomFactory: AbstractFactoryValidation
+    public class CustomFactory: AbstractFactoryValidation
     {
         public override string ValidatorObject(string rule, object value, string customMessage)
         {

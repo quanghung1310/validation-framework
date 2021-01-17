@@ -9,7 +9,7 @@ namespace ValidationFramework
     {
         private const int MaxAllowableLength = -1;
 
-        public int Length { get; private set; }
+        int Length;
 
         public MaxLength(int length)
         {
