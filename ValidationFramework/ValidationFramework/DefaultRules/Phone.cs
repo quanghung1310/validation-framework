@@ -7,7 +7,7 @@ namespace ValidationFramework
 {
     class Phone : DataType
     {
-        private object value;
+        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
         private const string _additionalPhoneNumberCharacters = "-.()";
 

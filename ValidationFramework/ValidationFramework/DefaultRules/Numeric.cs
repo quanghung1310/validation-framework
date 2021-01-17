@@ -7,7 +7,7 @@ namespace ValidationFramework
 {
     class Numeric : DataType
     {
-        private object value;
+        public object value { get; set; }
 
         public Numeric(object value)
         {

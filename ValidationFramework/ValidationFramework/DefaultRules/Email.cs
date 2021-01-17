@@ -8,14 +8,14 @@ namespace ValidationFramework
 {
     class Email : DataType
     {
-        private object value;
+        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
 
         public Email(object value)
         {
             this.value = value;
         }
-
+       
         public bool IsValid()
         {
             if (this.value == null)

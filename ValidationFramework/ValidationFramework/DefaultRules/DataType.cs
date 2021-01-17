@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ValidationFramework
 {
-    interface DataType
+    public interface DataType
     {
+        object value { get; set; } 
         bool IsValid();
         string ErrorMessage();
     }

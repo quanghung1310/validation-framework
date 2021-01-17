@@ -7,7 +7,7 @@ namespace ValidationFramework
 {
     class Url : DataType
     {
-        private object value;
+        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
 
         public Url(object value)

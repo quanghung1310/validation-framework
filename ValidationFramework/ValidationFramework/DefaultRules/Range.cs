@@ -8,7 +8,7 @@ namespace ValidationFramework
 {
     class Range : DataType
     {
-        private object value;
+        public object value { get; set; }
 
         public object Minimum { get; private set; }
         public object Maximum { get; private set; }
