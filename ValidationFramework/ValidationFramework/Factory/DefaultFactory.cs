@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ValidationFramework.Factory
 {
-    class DefaultFactory
+    class DefaultFactory : AbstractFactoryValidation
     {
-        public string ValidatorObject(string rule, object value, string customMessage)
+        public override string ValidatorObject(string rule, object value, string customMessage)
         {
             try
             {

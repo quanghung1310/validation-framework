@@ -15,7 +15,7 @@ namespace ValidationFramework
         {
             this.value = value;
         }
-
+       
         public bool IsValid()
         {
             if (this.value == null)

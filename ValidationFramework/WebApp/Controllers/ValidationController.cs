@@ -11,7 +11,7 @@ namespace WebApp.Controllers
 {
     public class ValidationController : Controller
     {
-        private static Validation validation = new Validation();
+        private static Validation validation = Validation.getInstance();
         public IActionResult Index()
         {
             return View();
@@ -25,11 +25,11 @@ namespace WebApp.Controllers
 
                 var Rules = new Dictionary<string, string>()
                 {
-                    {"Email","Email"},
+                    {"Email","Email|Required|Range:3,7"},
                     {"Password", "Password"}
 
                 };
-                validation.Validator(form, Rules);
+                var dic = validation.Validator(form, Rules);
 
 
             }               

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ValidationFramework.Factory
 {
-    public class AbstractFactoryValidation
+    public abstract class AbstractFactoryValidation
     {
-        
+        public abstract string ValidatorObject(string rule, object value, string customMessage);
     }
 }

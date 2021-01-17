@@ -4,12 +4,17 @@ using System.Text;
 
 namespace ValidationFramework.Factory
 {
-    class CustomFactory
+    public  class CustomFactory: AbstractFactoryValidation
     {
-        public string ValidatorObject(string rule, object value, string customMessage)
+        public override string ValidatorObject(string rule, object value, string customMessage)
         {
             return "message";
         }
+        public  string ValidatorObjectCustomer(string rule, object value, string customMessage)
+        {
+            return "message";
+        }
+
 
     }
 }
