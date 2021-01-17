@@ -7,43 +7,40 @@ namespace ValidationFramework
 {
     class MaxLength : DataType
     {
-        public object value { get; set; }
         private const int MaxAllowableLength = -1;
 
         public int Length { get; private set; }
 
-        public MaxLength(object value, int length)
+        public MaxLength(int length)
         {
             this.Length = length;
-            this.value = value;
         }
 
-        public MaxLength(object value)
+        public MaxLength()
         {
             this.Length = MaxAllowableLength;
-            this.value = value;
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             EnsureLegalLengths();
 
             var length = 0;
 
-            if (this.value == null)
+            if (value == null)
             {
                 return true;
             }
             else
             {
-                var str = this.value as string;
+                var str = value as string;
                 if (str != null)
                 {
                     length = str.Length;
                 }
                 else
                 {
-                    length = ((Array)this.value).Length;
+                    length = ((Array)value).Length;
                 }
             }
 

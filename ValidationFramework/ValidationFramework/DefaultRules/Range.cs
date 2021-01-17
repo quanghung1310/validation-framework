@@ -8,38 +8,33 @@ namespace ValidationFramework
 {
     class Range : DataType
     {
-        public object value { get; set; }
-
         public object Minimum { get; private set; }
         public object Maximum { get; private set; }
         public Type OperandType { get; private set; }
         private Func<object, object> Conversion { get; set; }
 
-        public Range(object value, int minimum, int maximum)
+        public Range(int minimum, int maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = typeof(int);
         }
 
-        public Range(object value, double minimum, double maximum)
+        public Range(double minimum, double maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = typeof(double);
         }
 
-        public Range(object value, Type type, string minimum, string maximum)
+        public Range(Type type, string minimum, string maximum)
         {
-            this.value = value;
             this.Minimum = minimum;
             this.Maximum = maximum;
             this.OperandType = type;
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             this.SetupConversion();
 

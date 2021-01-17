@@ -15,12 +15,11 @@ namespace ValidationFramework.Factory
                 Type t = Type.GetType("ValidationFramework1.DefaultRules."+ rule );
 
                 dataType = (DataType)Activator.CreateInstance(t);
-                dataType.value = value;
                
              
                 if (dataType != null)
                 {
-                    if (!dataType.IsValid())
+                    if (!dataType.IsValid(value))
                     {
                         return customMessage != null ? customMessage : dataType.ErrorMessage();
                     }

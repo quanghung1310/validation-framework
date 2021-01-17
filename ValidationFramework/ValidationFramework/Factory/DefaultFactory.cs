@@ -15,32 +15,32 @@ namespace ValidationFramework.Factory
                 switch (paramsRule[0].ToLower())
                 {
                     case Rules.Mail:
-                        dataType = new Email(value);
+                        dataType = new Email();
                         break;
                     case Rules.MaxLength:
-                        dataType = new MaxLength(value);
+                        dataType = new MaxLength();
                         break;
                     case Rules.MinLength:
-                        dataType = new MinLength(value);
+                        dataType = new MinLength();
                         break;
                     case Rules.Numeric:
-                        dataType = new Numeric(value);
+                        dataType = new Numeric();
                         break;
                     case Rules.Phone:
-                        dataType = new Phone(value);
+                        dataType = new Phone();
                         break;
                     case Rules.Required:
-                        dataType = new Required(value);
+                        dataType = new Required();
                         break;
                     case Rules.Range:
                         var between = paramsRule[1].Split(',');
-                        dataType = new Range(value, Convert.ToDouble(between[0]), Convert.ToDouble(between[1]));
+                        dataType = new Range(Convert.ToDouble(between[0]), Convert.ToDouble(between[1]));
                         break;
                     case Rules.RegularExpression:
-                        dataType = new RegularExpression(value, paramsRule[1]);
+                        dataType = new RegularExpression(paramsRule[1]);
                         break;
                     case Rules.Url:
-                        dataType = new Url(value);
+                        dataType = new Url();
                         break;
 
                     default:
@@ -49,7 +49,7 @@ namespace ValidationFramework.Factory
                 }
                 if (dataType != null)
                 {
-                    if (!dataType.IsValid())
+                    if (!dataType.IsValid(value))
                     {
                         return customMessage != null ? customMessage : dataType.ErrorMessage();                     
                     }

@@ -8,22 +8,21 @@ namespace ValidationFramework
 {
     class Email : DataType
     {
-        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
 
-        public Email(object value)
+        public Email()
         {
-            this.value = value;
+            //
         }
        
-        public bool IsValid()
+        public bool IsValid(object value)
         {
-            if (this.value == null)
+            if (value == null)
             {
                 return true;
             }
 
-            string valueAsString = this.value as string;
+            string valueAsString = value as string;
 
             if (_regex != null)
             {

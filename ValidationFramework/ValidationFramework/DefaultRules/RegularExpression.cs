@@ -8,7 +8,6 @@ namespace ValidationFramework
 {
     class RegularExpression : DataType
     {
-        public object value { get; set; }
         private int _matchTimeoutInMilliseconds;
         private bool _matchTimeoutSet;
 
@@ -28,9 +27,8 @@ namespace ValidationFramework
         public string Pattern { get; private set; }
         private Regex Regex { get; set; }
 
-        public RegularExpression(object value, string pattern)
+        public RegularExpression(string pattern)
         {
-            this.value = value;
             this.Pattern = pattern;
         }
 
@@ -39,7 +37,7 @@ namespace ValidationFramework
             return "format is invalid.";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             this.SetupRegex();
 

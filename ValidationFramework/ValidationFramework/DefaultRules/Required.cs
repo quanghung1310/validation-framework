@@ -6,10 +6,9 @@ namespace ValidationFramework
 {
     class Required : DataType
     {
-        public object value { get; set; }
-        public Required(object value)
+        public Required()
         {
-            this.value = value;
+            //
         }
 
         public bool AllowEmptyStrings { get; set; }
@@ -19,9 +18,9 @@ namespace ValidationFramework
             return "field is required";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
-            if (this.value == null)
+            if (value == null)
             {
                 return false;
             }

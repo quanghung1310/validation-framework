@@ -7,13 +7,12 @@ namespace ValidationFramework
 {
     class Phone : DataType
     {
-        public object value { get; set; }
         private static Regex _regex = CreateRegEx();
         private const string _additionalPhoneNumberCharacters = "-.()";
 
-        public Phone(object value)
+        public Phone()
         {
-            this.value = value;
+            //
         }
 
 
@@ -22,7 +21,7 @@ namespace ValidationFramework
             return "must be a phone format.";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             if (value == null)
             {
