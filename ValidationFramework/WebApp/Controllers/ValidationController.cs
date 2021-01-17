@@ -16,19 +16,25 @@ namespace WebApp.Controllers
         {
             return View();
         }
+        public  string Check(string Value)
+        {
+            if (Value == "" || Value==null) return "Khong đc để trống";
+            return null;
+            
+        }
         [HttpPost]
         public IActionResult Index(Form form)
         {
             string message = string.Empty;
             try
             {
-
-                var rules = new Dictionary<string, string>()
+               
+                var rules = new Dictionary<string, string>
                 {
                     {"Email","Url"},
                     {"Custom", "EmptyString" },
                     {"Phone","Phone" },
-                    {"FullName","Required" },
+                    {"FullName","EmptyString"},
                     {"Regex",@"regularexpression:^[0-9\-\+]{9,15}$" }
 
 
@@ -47,7 +53,10 @@ namespace WebApp.Controllers
 
 
                 };
-                var dic = validation.Validator(form, rules, customMessage);
+                var dicFun = new Dictionary<string, Func<string,string>>();
+                dicFun.Add("Email",Check);
+                
+                var dic = validation.Validator(form, rules, customMessage,dicFun);
                 ViewBag.DicError = dic;
 
 
