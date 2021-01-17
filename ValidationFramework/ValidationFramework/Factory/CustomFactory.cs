@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace ValidationFramework.Factory
@@ -12,9 +13,9 @@ namespace ValidationFramework.Factory
             {
                 var paramsRule = rule.Split(':');
                 DataType dataType;
-                Type t = Type.GetType("ValidationFramework1.DefaultRules."+ rule );
+                Type type = Type.GetType("WebApp." + rule + ", WebApp");
 
-                dataType = (DataType)Activator.CreateInstance(t);
+                dataType = (DataType)Activator.CreateInstance(type);
                
              
                 if (dataType != null)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace ValidationFramework1.DefaultRules
+namespace WebApp
 {
     class CustomRule: ValidationFramework.DataType
     {
@@ -24,7 +24,7 @@ namespace ValidationFramework1.DefaultRules
             return "field is required";
         }
 
-        public bool IsValid()
+        public bool IsValid(object value)
         {
             if (this.value == null)
             {
