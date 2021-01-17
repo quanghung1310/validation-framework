@@ -7,7 +7,7 @@ namespace ValidationFramework
 {
     class MinLength : DataType
     {
-        public int Length { get; private set; }
+        int Length; 
 
         public MinLength()
         {

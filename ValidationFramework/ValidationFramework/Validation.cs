@@ -7,7 +7,7 @@ namespace ValidationFramework
 {
     public class Validation
     {
-        private static Validation instance;
+        private static Validation instance = new Validation();
 
         public static AbstractFactoryValidation abstractFactoryValidation;
         public static Validation getInstance()
