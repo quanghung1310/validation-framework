@@ -18,6 +18,7 @@ namespace ValidationFramework
             }
             return instance;
         }
+       
         public List<ResultValidation> Validator(object Request, Dictionary<string, string> Rules, Dictionary<string, string> CustomMessages = null, List<ListValidFunc> FunctionCustom =null)
         {
             var DicErrorMessage = new List<ResultValidation>();

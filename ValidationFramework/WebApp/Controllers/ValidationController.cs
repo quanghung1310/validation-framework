@@ -28,26 +28,31 @@ namespace WebApp.Controllers
             string message = string.Empty;
             try
             {            
+                //Tham số rules là Dic chứa các trường valid và kiểu valid mong muốn
                 var rules = new Dictionary<string, string>
                 {
-                    {"Email","Url"},
+                    {"Email","email|required"},
                     {"Custom", "EmptyString" },
                     {"Phone","Phone" },
-                    {"FullName","EmptyString"},
+                    {"FullName","required"},
                     {"Regex",@"regularexpression:^[0-9\-\+]{9,15}$" }
                 };
+                //Tham số custom chính là Dic chứa các mã lỗi custom của các trường
                 var customMessage =  new Dictionary<string, string>()
                 {
-                    {"Email","Không phải url"},
-                    {"Custom", "Không được để trống trường này" },
+                    {"Email","Không phải là email"},
+                    {"Custom", "Trường này phải được để trống" },
                     {"Phone","Phải là số điện thoại" },
-                    {"FullName","Phải có trường này" },
+                    {"FullName","Full Name là trường bắt buộc" },
                     {"Regex",@"Custome regex" }
                 };
+                //Hàm DicFun chính là hàm tạo nhanh một Custom. Cho phép ta gửi một function custom vào
                 var dicFun = new List<ListValidFunc>();
                 dicFun.Add(new ListValidFunc() { FeildName="Email",Func=Check});
                 dicFun.Add(new ListValidFunc() { FeildName = "Custom", Func = Check });
-                var dic = validation.Validator(form, rules, customMessage, dicFun);
+            
+                var dic = validation.Validator(form, rules, customMessage);
+                //Biến dic chính là kết quả mã lỗi trả ra cho từng trường
                 ViewBag.DicError = dic;
             }               
             catch (Exception ex)
