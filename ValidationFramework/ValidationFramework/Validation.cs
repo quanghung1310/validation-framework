@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ValidationFramework.Factory;
 
 namespace ValidationFramework
@@ -17,7 +18,8 @@ namespace ValidationFramework
             }
             return instance;
         }
-        public List<ResultValidation> Validator(object Request, Dictionary<string, string> Rules, Dictionary<string, string> CustomMessages = null, Dictionary<string, Func<string, string>> FunctionCustom =null)
+       
+        public List<ResultValidation> Validator(object Request, Dictionary<string, string> Rules, Dictionary<string, string> CustomMessages = null, List<ListValidFunc> FunctionCustom =null)
         {
             var DicErrorMessage = new List<ResultValidation>();
             foreach (KeyValuePair<string, string> entry in Rules)
@@ -38,14 +40,19 @@ namespace ValidationFramework
                         {
                             abstractFactoryValidation = new CustomFactory();                         
                         }
-                        if (FunctionCustom.ContainsKey(entry.Key.ToString()))
+                        if (FunctionCustom != null)
                         {
-                            var messageFunc = FunctionCustom[entry.Key.ToString()].Invoke(fieldValue);
-                            if (messageFunc != null)
+                            var funcRun = FunctionCustom.FirstOrDefault(f => f.FeildName == entry.Key.ToString());
+                            if (funcRun!=null)
                             {
-                                DicErrorMessage.Add(new ResultValidation() { FieldName = entry.Key, Message = messageFunc });
-                            }
+                                var messageFunc = funcRun.Func.Invoke(fieldValue);
+                                if (messageFunc != null)
+                                {
+                                    DicErrorMessage.Add(new ResultValidation() { FieldName = entry.Key, Message = messageFunc });
+                                }
+                            }    
                         }    
+                        
                          
                         var errorMessage = abstractFactoryValidation.ValidatorObject(item, fieldValue,
                    CustomMessages != null && CustomMessages.ContainsKey(entry.Key) ? CustomMessages[entry.Key] : null);
