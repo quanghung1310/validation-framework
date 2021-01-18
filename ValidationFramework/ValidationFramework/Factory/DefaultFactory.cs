@@ -6,12 +6,12 @@ namespace ValidationFramework.Factory
 {
     class DefaultFactory : AbstractFactoryValidation
     {
+        DataType dataType;
         public override string ValidatorObject(string rule, object value, string customMessage)
         {
             try
             {
                 var paramsRule = rule.Split(':');
-                DataType dataType;
                 switch (paramsRule[0].ToLower())
                 {
                     case Rules.Mail:
